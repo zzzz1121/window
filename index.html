@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10171c">
+  <meta name="description" content="WINDOW V1.0 — 一扇雨夜的窗。听雨，擦开雾气，看见城市。">
+  <title>WINDOW V1.1 — Rainy Night</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23151e24'/%3E%3Cpath d='M8 8v16h16V8ZM16 8v16M8 16h16' fill='none' stroke='%23c6cdd0' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/raindrop-fx.js"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <main id="window" class="scene" aria-label="WINDOW V1.0 互动雨夜窗景">
+    <canvas id="background" class="layer" width="1920" height="1080" aria-hidden="true"></canvas>
+    <canvas id="fog" class="layer" width="1920" height="1080" aria-label="按住鼠标或手指拖动，擦除玻璃上的雾气"></canvas>
+    <canvas id="rain" class="layer" width="1920" height="1080" aria-hidden="true"></canvas>
+    <div class="glass-edge" aria-hidden="true"></div>
+    <header class="identity">
+      <h1>WINDOW<span>.</span></h1>
+      <p id="scene-caption"><span>01</span><i>/</i> RAINY NIGHT</p>
+    </header>
+    <div id="hint" class="hint">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M12 27c-6-7 0-17 9-17 6 0 10 3 10 8M31 11v7h-7"/><path d="m15 31 5-13c1-3 5-2 4 1l-2 7 2-3c2-2 5 0 4 2l-3 7"/></svg>
+      <p>拖动鼠标，擦开玻璃上的雾气</p>
+      <span>LET THE OUTSIDE IN</span>
+    </div>
+    <footer class="scene-meta" aria-hidden="true"><span class="live-dot"></span> A MOMENT BY THE WINDOW <i>—</i> V1.1</footer>
+    <div class="controls" aria-label="窗景控制">
+      <section id="scene-popover" class="popover" aria-label="场景设置" hidden>
+        <h2>SCENE <span id="current-scene">城市雨夜</span></h2>
+        <div class="scene-options">
+          <button data-scene="city" aria-pressed="true" aria-label="城市雨夜"><img src="assets/rainy-night.jpg" alt=""><span>城市</span></button>
+          <button data-scene="forest" aria-pressed="false" aria-label="森林雨窗"><img src="assets/forest.jpg" alt=""><span>森林</span></button>
+          <button data-scene="seaside" aria-pressed="false" aria-label="海边雨窗"><img src="assets/seaside.jpg" alt=""><span>海边</span></button>
+        </div>
+        <label class="upload-button" for="upload">＋ 上传自定义背景<input id="upload" type="file" accept="image/jpeg,image/png,image/webp"></label>
+        <p class="quiet-note">JPG / PNG / WebP · 仅在本机使用</p>
+      </section>
+      <section id="rain-popover" class="popover compact" aria-label="雨量设置" hidden>
+        <h2>RAIN <span>雨量</span></h2>
+        <div class="rain-options">
+          <button data-rain="light" aria-pressed="false">小雨</button><button data-rain="medium" aria-pressed="true">中雨</button><button data-rain="heavy" aria-pressed="false">大雨</button>
+        </div>
+      </section>
+      <section id="sound-popover" class="popover" aria-label="声音设置" hidden>
+        <h2>SOUND <button id="sound-play" class="small-button" aria-pressed="false">开启声音</button></h2>
+        <div class="sound-sliders"></div>
+        <div class="master-volume"><label class="range-label" for="master">总音量 <output id="master-value">45%</output></label><input id="master" type="range" min="0" max="100" value="45"></div>
+      </section>
+      <section id="glass-popover" class="popover" aria-label="玻璃设置" hidden>
+        <h2>GLASS <span>玻璃</span></h2>
+        <label class="range-label" for="brush">画笔大小 <output id="brush-value">75 px</output></label><input id="brush" type="range" min="20" max="160" value="75">
+        <p class="quiet-note">停留 20 秒，再用 8 秒逐渐恢复雾气</p>
+        <div class="button-row"><button id="pause-fog" aria-pressed="false">暂停恢复</button><button id="reset">重置雾气</button></div>
+      </section>
+      <button id="scene-toggle" class="control" data-popover="scene" aria-label="场景" aria-expanded="false" aria-controls="scene-popover" title="场景">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2"/><path d="M8 4h10a3 3 0 0 1 3 3v8M3 16l4-4 4 4 2-2 4 4"/><circle cx="12" cy="11" r="1"/></svg>
+      </button>
+      <button id="rain-toggle" class="control" data-popover="rain" aria-label="雨量：中雨" aria-expanded="false" aria-controls="rain-popover" title="雨量：中雨">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 13a4 4 0 0 1-.5-8A5 5 0 0 1 16 5a4 4 0 1 1 1 8M8 16l-1 3m6-3-1 3m6-3-1 3"/></svg>
+      </button>
+      <button id="sound-toggle" class="control" data-popover="sound" aria-label="声音" aria-expanded="false" aria-controls="sound-popover" title="声音">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 5-5 4H3v6h3l5 4Z"/><path class="sound-off" d="m16 9 5 6m0-6-5 6"/><path class="sound-on" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+      </button>
+      <button id="glass-toggle" class="control" data-popover="glass" aria-label="玻璃" aria-expanded="false" aria-controls="glass-popover" title="玻璃">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 4 6 6-3 3-2-2-7 9-4-4 9-7-2-2Z M4 16l-1 5 5-1"/></svg>
+      </button>
+      <span class="separator" aria-hidden="true"></span>
+      <button id="fullscreen" class="control" aria-label="进入全屏" aria-pressed="false" title="进入全屏">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg>
+      </button>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div id="loading" class="loading">正在打开这扇窗<span>WINDOW / 01</span></div>
+    <noscript>请启用 JavaScript 以体验互动雨窗。</noscript>
+  </main>
+</body>
+</html>

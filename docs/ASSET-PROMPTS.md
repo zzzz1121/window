@@ -1,0 +1,15 @@
+# Desktop layer assets
+
+Generated with the built-in imagegen tool, with genuine alpha transparency. These are separate room / speaker / clock assets, not a flattened concept background. The postcard photos reuse each outdoor scene. No new image API dependency is needed at runtime.
+
+## room
+
+Photorealistic architectural interior photography asset, wide 16:9 landscape. Exact composition for a layered web scene: a broad perfectly rectangular TRANSPARENT window aperture occupies x=2% to 98%, y=0% to 74% of the image, with NO view, NO glass, NO scene painted inside it. Extremely slim warm grey aluminum side jambs at outer 2% edges, slim horizontal sill at 74% height. Below the sill a clean light walnut desktop occupies the entire bottom 25% of the image, extending beyond left right and bottom edges, natural fine wood grain, seated straight-on camera looking slightly down, 50mm lens, quiet modern premium home interior, soft warm lamp light from upper left outside frame, subtle cool reflected light from window, balanced not dark. Empty desktop. NO objects, NO chairs, NO books, NO plants, NO text. Actual photographic textures, not illustration, not blocky CSS, not game environment. The top three quarters window opening MUST be genuine alpha transparency. Only desk and minimal window frame opaque. Do not draw checkerboard.
+
+## speaker
+
+Photorealistic isolated cutout PNG asset, transparent background. A single small modern desktop wireless speaker, no branding, warm grey matte aluminum enclosure, rounded horizontal rectangular body with fine realistic woven grille taking left three quarters of front, one integrated large brushed silver volume knob at upper right front, tiny unlit power mark below it. Minimal Scandinavian home product design, no neon no glowing light strips. View nearly straight on, camera 15 degrees above horizontal so a little top and right face is visible, intended to sit on a desk viewed by a seated person, not an overhead shot. Soft warm light from upper left and very subtle cool window rim light. Fine material textures, realistic dimensional depth and soft contact shadow below. Object tightly framed with 7% transparent margins, landscape image, entirety visible including base. One speaker only, no props, no furniture, no room, no text.
+
+## clock
+
+Photorealistic isolated cutout PNG asset, transparent background. One compact minimal round analog tabletop clock in warm grey matte aluminum, understated circular off-white face with thin charcoal hour and minute hands, fine muted copper second hand and small precise hour tick marks, no luminous display, no digits or branding. A discreet short integrated metal pedestal foot supports it upright. Camera seated straight-on 15 degrees above horizontal with a little top and right side visible. Soft warm light from upper left with subtle cool window rim. A matching minimalist Scandinavian desktop product, authentic interior photography, not a toy or game asset. Soft contact shadow beneath, tightly framed with 7% transparent margins, entire clock and foot visible. One clock only, no speaker, no desk, no surroundings, no text.
